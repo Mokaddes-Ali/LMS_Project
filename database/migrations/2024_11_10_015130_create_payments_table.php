@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exams', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->unsignedBigInteger('curriculum_id');
-            $table->text('description');
+            $table->float('amount');
+            $table->unsignedBigInteger('invoice_id');
+            $table->string('transaction_id');
             $table->unsignedBigInteger('creator')->nullable();
             $table->unsignedBigInteger('editor')->nullable();
             $table->timestamps();
 
-            $table->foreign('curriculum_id')->references('id')->on('curriculums')->onDelete('cascade');
+            $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
             $table->foreign('creator')
                   ->references('id')
                   ->on('users')
@@ -40,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exams');
+        Schema::dropIfExists('payments');
     }
 };

@@ -11,16 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exams', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('curriculum_id');
-            $table->text('description');
+            $table->string('answer_a');
+            $table->string('answer_b');
+            $table->string('answer_c');
+            $table->string('answer_d');
+            $table->string('correct_answer');
             $table->unsignedBigInteger('creator')->nullable();
             $table->unsignedBigInteger('editor')->nullable();
             $table->timestamps();
 
-            $table->foreign('curriculum_id')->references('id')->on('curriculums')->onDelete('cascade');
             $table->foreign('creator')
                   ->references('id')
                   ->on('users')
@@ -34,12 +36,11 @@ return new class extends Migration
                   ->restrictOnDelete();
         });
     }
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('exams');
+        Schema::dropIfExists('quistions');
     }
 };

@@ -13,7 +13,25 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
+            $table->dateTime('due_date');
+            $table->dateTime('paid_date')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('creator')->nullable();
+            $table->unsignedBigInteger('editor')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('creator')
+                  ->references('id')
+                  ->on('users')
+                  ->cascadeOnUpdate()
+                  ->restrictOnDelete();
+
+            $table->foreign('editor')
+                  ->references('id')
+                  ->on('users')
+                  ->cascadeOnUpdate()
+                  ->restrictOnDelete();
         });
     }
 

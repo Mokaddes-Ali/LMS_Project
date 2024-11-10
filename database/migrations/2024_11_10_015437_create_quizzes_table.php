@@ -11,16 +11,27 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exams', function (Blueprint $table) {
+        Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('curriculum_id');
-            $table->text('description');
+            $table->unsignedBigInteger('creator')->nullable();
+            $table->unsignedBigInteger('editor')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('quiz_question', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('quiz_id');
+            $table->unsignedBigInteger('question_id');
             $table->unsignedBigInteger('creator')->nullable();
             $table->unsignedBigInteger('editor')->nullable();
             $table->timestamps();
 
-            $table->foreign('curriculum_id')->references('id')->on('curriculums')->onDelete('cascade');
+            $table->unique(['quiz_id', 'question_id']);
+
+            $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');
+            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
+
             $table->foreign('creator')
                   ->references('id')
                   ->on('users')
@@ -40,6 +51,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exams');
+        Schema::dropIfExists('quizzes');
+        Schema::dropIfExists('quiz_question');
     }
 };
