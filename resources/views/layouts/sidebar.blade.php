@@ -22,7 +22,7 @@
             </a>
           </li>
           <li>
-            <a href="{{url('customer/show')}}">
+            <a href="{{url('/courses')}}">
               <i class="bi bi-circle"></i><span>Manage Customer</span>
             </a>
           </li>
@@ -42,7 +42,7 @@
             </a>
           </li>
           <li>
-            <a href="{{url('admin/category/show') }}">
+            <a href="{{url('/courses') }}">
               <i class="bi bi-circle"></i><span> Manage Couses</span>
             </a>
           </li>
