@@ -33,17 +33,17 @@
 
       <li class="nav-item">
         <a class="nav-link @if (Request::segment(2) != 'category') collapsed @endif"data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Category</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-journal-text"></i><span>Couses><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{{url('admin/category/add')}}">
-              <i class="bi bi-circle"></i><span> Add Category</span>
+            <a href="{{url('/courses/create') }}">
+              <i class="bi bi-circle"></i><span> Add Couses </span>
             </a>
           </li>
           <li>
             <a href="{{url('admin/category/show') }}">
-              <i class="bi bi-circle"></i><span> Manage Category</span>
+              <i class="bi bi-circle"></i><span> Manage Couses</span>
             </a>
           </li>
 
