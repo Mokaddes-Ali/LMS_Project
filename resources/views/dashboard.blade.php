@@ -10,6 +10,9 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
+                    <h1 class="text-2xl font-semibold text-gray-800 leading-tight">
+                        {{ __('Dashboard') }}
+                    </h1>
                 </div>
             </div>
         </div>
