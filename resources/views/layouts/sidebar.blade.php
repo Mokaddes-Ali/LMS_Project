@@ -52,17 +52,17 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Brand</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-layout-text-window-reverse"></i><span>Course Students</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{{url('admin/brand/add') }}">
-              <i class="bi bi-circle"></i><span>Add Brand</span>
+            <a href="{{url('course_students/create') }}">
+              <i class="bi bi-circle"></i><span>Add Course Students</span>
             </a>
           </li>
           <li>
-            <a href="{{url('admin/brand/show') }}">
-              <i class="bi bi-circle"></i><span>Manage Brand</span>
+            <a href="{{url('/course_students') }}">
+              <i class="bi bi-circle"></i><span>Manage Course Students</span>
             </a>
           </li>
 

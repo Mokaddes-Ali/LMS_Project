@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CourseStudentController;
 
 
 Route::get('/dashboard', function () {
@@ -21,6 +22,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/courses/{course}/edit', [CourseController::class, 'edit'])->name('courses.edit');
     Route::put('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
     Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
+});
+
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('course_students', [CourseStudentController::class, 'index'])->name('course_students.index');
+    Route::get('course_students/create', [CourseStudentController::class, 'create'])->name('course_students.create');
+    Route::post('course_students', [CourseStudentController::class, 'store'])->name('course_students.store');
+    Route::get('course_students/{courseStudent}/edit', [CourseStudentController::class, 'edit'])->name('course_students.edit');
+    Route::put('course_students/{courseStudent}', [CourseStudentController::class, 'update'])->name('course_students.update');
+    Route::delete('course_students/{courseStudent}', [CourseStudentController::class, 'destroy'])->name('course_students.destroy');
 });
 
 

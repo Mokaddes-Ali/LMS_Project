@@ -20,5 +20,11 @@ class Course extends Model
         'price',
         'is_active',
     ];
+
+    public function students()
+{
+    return $this->hasMany(CourseStudent::class);
+}
+
 }
 
