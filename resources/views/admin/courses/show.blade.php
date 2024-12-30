@@ -1,48 +1,57 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-4">Courses List</h1>
+<div class="container">
+    <h3 class="text-center display-5 mb-1">Courses List</h3>
+
     @if (session('success'))
-        <div class="bg-green-500 text-white px-4 py-2 rounded mb-4">
+        <div class="alert alert-success mb-4">
             {{ session('success') }}
         </div>
     @endif
 
-    <a href="{{ route('courses.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded mb-4 inline-block">Add New Course</a>
+    <a href="{{ route('courses.create') }}" class="btn btn-primary mb-4">Add New Course</a>
 
-    <div class="overflow-x-auto">
-        <table class="min-w-full bg-white border border-gray-200 rounded shadow">
-            <thead>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
                 <tr>
-                    <th class="py-2 px-4 border-b">#</th>
-                    <th class="py-2 px-4 border-b">Name</th>
-                    <th class="py-2 px-4 border-b">Slug</th>
-                    <th class="py-2 px-4 border-b">Price</th>
-                    <th class="py-2 px-4 border-b">Image</th>
-                    <th class="py-2 px-4 border-b">Actions</th>
+                    <th>Courses Id</th>
+                    <th>Name</th>
+                    <th>Slug</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th>Status</th> <!-- Added Status Column -->
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($courses as $course)
                 <tr>
-                    <td class="py-2 px-4 border-b">{{ $loop->iteration }}</td>
-                    <td class="py-2 px-4 border-b">{{ $course->name }}</td>
-                    <td class="py-2 px-4 border-b">{{ $course->slug }}</td>
-                    <td class="py-2 px-4 border-b">${{ $course->price }}</td>
-                    <td class="py-2 px-4 border-b">
+                    <td>{{ $course->id }}</td>
+                    <td>{{ $course->name }}</td>
+                    <td>{{ $course->slug }}</td>
+                    <td>${{ $course->price }}</td>
+                    <td>
                         @if ($course->image)
-                        <img src="{{ asset('storage/' . $course->image) }}" alt="Course Image" class="w-16 h-16 object-cover">
+                            <!-- Small image styling -->
+                            <img src="{{ asset($course->image) }}" alt="Course Image" style="width: 150px; height: 50px;" >
                         @else
-                        N/A
+                            N/A
                         @endif
                     </td>
-                    <td class="py-2 px-4 border-b flex space-x-2">
-                        <a href="{{ route('courses.edit', $course->id) }}" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</a>
-                        <form action="{{ route('courses.destroy', $course->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
+                    <td>
+                        <!-- Displaying the status with color -->
+                        <span class="badge" style="background-color: {{ $course->is_active ? 'green' : 'red' }}; color: white;">
+                            {{ $course->is_active ? 'Active' : 'Inactive' }}
+                        </span>
+                    </td>
+                    <td>
+                        <a href="{{ route('courses.edit', $course->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('courses.destroy', $course->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this course?');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>
                     </td>
                 </tr>
@@ -51,8 +60,29 @@
         </table>
     </div>
 
-    <div class="mt-4">
+    <div class="d-flex justify-content-center mt-4">
         {{ $courses->links() }}
     </div>
 </div>
 @endsection
+
+@section('styles')
+<style>
+    /* Hover effect on table rows */
+    tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    /* Add shadow to table cells */
+    td, th {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    /* Add some margin for the title */
+    h1 {
+        font-size: 2.5rem;
+    }
+</style>
+@endsection
+

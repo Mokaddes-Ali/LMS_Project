@@ -25,6 +25,7 @@
   <link href="{{ url('/assets/vendor/quill/quill.bubble.css')}}" rel="stylesheet">
   <link href="{{ url('/assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
   <link href="{{ url('/assets/vendor/simple-datatables/style.css')}}" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="{{ url('/assets/css/style.css')}}" rel="stylesheet">

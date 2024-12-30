@@ -40,6 +40,19 @@
                     <input type="number" name="price" class="form-control" value="{{ old('price') }}" required>
                 </div>
             </div>
+
+            <div class="form-group relative">
+                <label for="is_active">Active Status</label>
+                <div class="relative">
+                    <select class="form-select" name="is_active" aria-label="Default select example">
+                        <option selected>Select Status</option>
+                        <option value="1">Active</option>
+                        <option value="2">Inactive</option>
+                    </select>
+                </div>
+            </div>
+
+
             <!-- Submit Button -->
             <div class="text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>

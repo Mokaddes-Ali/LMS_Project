@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('editor')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->float('price')->default(0);
+            $table->boolean('is_active')->default(true); // Added is_active column
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

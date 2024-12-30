@@ -18,6 +18,7 @@ class Course extends Model
         'editor',
         'user_id',
         'price',
+        'is_active',
     ];
 }
 
