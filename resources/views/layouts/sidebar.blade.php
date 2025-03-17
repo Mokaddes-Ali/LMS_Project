@@ -17,7 +17,7 @@
 
 
           <li>
-            <a href="{{url('admin/customer/add')}}">
+            <a href="{{route('courses.create')}}">
               <i class="bi bi-circle"></i><span>Add Customer</span>
             </a>
           </li>

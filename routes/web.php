@@ -5,7 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseStudentController;
-
+use App\Livewire\Courses\CreateCourses;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -15,16 +15,20 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(
 
 
 
+// Route::middleware('auth')->group(function () {
+//     Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+//     Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
+//     Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
+//     Route::get('/courses/{course}/edit', [CourseController::class, 'edit'])->name('courses.edit');
+//     Route::put('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
+//     Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
+// });
+
+
 Route::middleware('auth')->group(function () {
-    Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
-    Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
-    Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
-    Route::get('/courses/{course}/edit', [CourseController::class, 'edit'])->name('courses.edit');
-    Route::put('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
-    Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
+    Route::get('/courses/create', CreateCourses::class)->name('courses.create');
+
 });
-
-
 
 Route::middleware('auth')->group(function () {
     Route::get('course_students', [CourseStudentController::class, 'index'])->name('course_students.index');
